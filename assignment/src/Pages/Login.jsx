@@ -24,7 +24,7 @@ function Login() {
     } else {
       alert("Invalid Email or Password ❌")
     }
-
+    navigate("/Dashboard")
   }
 
   return (
