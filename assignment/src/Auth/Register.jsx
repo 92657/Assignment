@@ -20,7 +20,7 @@ function Register() {
         setemail("")
         setpassword("")
         alert("Successfully Registered")
-        
+        navigate("/Login")
     }
 
     return (
