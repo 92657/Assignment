@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import axios from "axios"
 import Navbar from "../Components/Navbar"
 
 function Products() {
@@ -9,15 +10,9 @@ function Products() {
 
   useEffect(() => {
 
-    fetch("https://fakestoreapi.com/products")
+    axios.get("https://fakestoreapi.com/products")
       .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch products")
-        }
-        return res.json()
-      })
-      .then((data) => {
-        setProducts(data)
+        setProducts(res.data)
         setLoading(false)
       })
       .catch(() => {
@@ -47,7 +42,6 @@ function Products() {
   }
 
   return (
-
     <>
       <Navbar />
 
@@ -57,21 +51,18 @@ function Products() {
           Products
         </h1>
 
-        {/* Loading */}
         {loading && (
           <div className="text-center text-gray-400 text-lg">
             Loading products...
           </div>
         )}
 
-        {/* Error */}
         {error && (
           <div className="text-center text-red-400 text-lg">
             {error}
           </div>
         )}
 
-        {/* Products Grid */}
         {!loading && !error && (
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
